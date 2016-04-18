@@ -31,6 +31,7 @@
 
 #endregion
 
+using Microsoft.CSharp.RuntimeBinder;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -93,5 +94,84 @@ namespace YouTrackSharp.Issues
             _allFields[binder.Name] = value;
             return true;
         }
+
+		public string GetProjectShortName()
+		{
+			//TryGetMember(new GetMemberBinder("projectShortName", true), res);
+			try
+			{
+				return ((dynamic)this).projectShortName;
+			}
+			catch (RuntimeBinderException)
+			{
+				return null;
+			}
+		}
+		public string GetSummary()
+		{
+			try
+			{
+				return ((dynamic)this).summary;
+			}
+			catch (RuntimeBinderException)
+			{
+				return null;
+			}
+		}
+		public string GetDescription()
+		{
+			try
+			{
+				return ((dynamic)this).description;
+			}
+			catch (RuntimeBinderException)
+			{
+				return null;
+			}
+		}
+		public int GetCreated()
+		{
+			try
+			{
+				return ((dynamic)this).created;
+			}
+			catch (RuntimeBinderException)
+			{
+				return -1;
+			}
+		}
+		public int GetUpdated()
+		{
+			try
+			{
+				return ((dynamic)this).updated;
+			}
+			catch (RuntimeBinderException)
+			{
+				return -1;
+			}
+		}
+		public string GetUpdaterName()
+		{
+			try
+			{
+				return ((dynamic)this).updaterName;
+			}
+			catch (RuntimeBinderException)
+			{
+				return null;
+			}
+		}
+		public string GetPriority()
+		{
+			try
+			{
+				return ((dynamic)this).Priority;
+			}
+			catch (RuntimeBinderException)
+			{
+				return null;
+			}
+		}
     }
 }

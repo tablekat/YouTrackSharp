@@ -53,9 +53,9 @@ namespace YouTrackSharp.Projects
             }
         }
 
-        public IEnumerable<Project> GetProjects()
+        public IEnumerable<Project> GetProjects(bool verbose = false)
         {
-            return _connection.Get<IEnumerable<Project>>("project/all");
+            return _connection.Get<IEnumerable<Project>>(String.Format("project/all?verbose={0}", verbose ? "true" : "false"));
         }
 
 

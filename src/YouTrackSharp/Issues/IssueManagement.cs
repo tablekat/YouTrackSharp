@@ -127,6 +127,21 @@ namespace YouTrackSharp.Issues
 																																		 projectIdentifier, max, start));
 		}
 
+		public IEnumerable<Issue> GetIssuesForProject(string projectIdentifier, string filter = null, int max = int.MaxValue, int after = 0, int? updatedAfter = null)
+		{
+			string command = string.Format("issue/byproject/{0}", projectIdentifier);
+			var queryString = HttpUtility.ParseQueryString("");
+
+			queryString["max"] = max.ToString();
+			queryString["after"] = after.ToString();
+			if (filter != null) queryString["filter"] = filter;
+			if (updatedAfter != null) queryString["updatedAfter"] = updatedAfter.ToString();
+
+			command += "?" + queryString.ToString();
+			return _connection.Get<MultipleIssueWrapper, Issue>(command);
+			
+		}
+
 		/// <summary>
 		/// Retrieve comments for a particular issue
 		/// </summary>

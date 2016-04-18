@@ -75,8 +75,10 @@
     <Compile Include="Infrastructure\Connection.cs" />
     <Compile Include="Infrastructure\IConnection.cs" />
     <Compile Include="Infrastructure\ISearchEngine.cs" />
+    <Compile Include="Issues\Change.cs" />
     <Compile Include="Issues\Count.cs" />
     <Compile Include="Issues\Entity.cs" />
+    <Compile Include="Issues\IssueChanges.cs" />
     <Compile Include="Issues\Link.cs" />
     <Compile Include="Infrastructure\SubValues.cs" />
     <Compile Include="Infrastructure\SubValuesArray.cs" />

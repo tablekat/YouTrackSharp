@@ -31,6 +31,8 @@
 
 #endregion
 
+using System.Collections.Generic;
+using System.Dynamic;
 using YouTrackSharp.Infrastructure;
 
 namespace YouTrackSharp.Projects
@@ -39,7 +41,9 @@ namespace YouTrackSharp.Projects
     {
         public string Name { get; set; }
         public string ShortName { get; set; }
-        public bool IsImporting { get; set; }
+		public bool IsImporting { get; set; }
+		public ExpandoObject[] AssigneesLogin { get; set; }
+		//public SubValuesArray AssigneesLogin { get; set; } // Why does this not work? Truly a mystery.
         public SubValuesArray AssigneesFullname { get; set; }
 
         protected bool Equals(Project other)
@@ -67,5 +71,15 @@ namespace YouTrackSharp.Projects
         {
             return string.Format("{0} Versions", Name);
         }
+
+		public bool IncludesAssignee(string userLogin)
+		{
+			foreach (dynamic x in this.AssigneesLogin)
+			{
+				var dict = (IDictionary<string, object>)x;
+				if((string)dict["value"] == userLogin) return true;
+			}
+			return false;
+		}
     }
 }
