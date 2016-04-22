@@ -152,6 +152,11 @@ namespace YouTrackSharp.Issues
 			return _connection.Get<IEnumerable<Comment>>(String.Format("issue/comments/{0}", issueId));
 		}
 
+		public IssueChanges GetChangesForIssue(string issueId)
+		{
+			return _connection.Get<IssueChanges>(String.Format("issue/{0}/changes", issueId));
+		}
+
 		public bool CheckIfIssueExists(string issueId)
 		{
 			try
